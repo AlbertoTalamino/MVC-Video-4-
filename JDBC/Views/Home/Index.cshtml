@@ -4,3 +4,34 @@
 
 <h2>@ViewBag.Title</h2>
 <br />
+
+@if(Model != null)
+{
+    using (Html.BeginForm())
+    {
+        <select id="selAreas" onchange="SetArea(this.value);">
+            <option value="0">Choose an employee</option>
+            @foreach (DAL.Models.Employee employee in Model)
+            {
+                <option value="@employee.EmployeeArea">@employee.Name</option>
+            }
+        </select>
+
+        <input type="submit" value="SearchArea">
+        <input type="hidden" id="IdArea" name="IdArea" value="0">
+
+        if(ViewBag.Area != null)
+        {
+            <p>huuifh</p>
+            <label>@ViewBag.Area</label>
+        }
+    }
+    
+}
+
+<script>
+    function SetArea(id)
+    {
+        document.getElementById("IdArea").value = id;
+    }
+</script>
